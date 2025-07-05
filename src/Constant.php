@@ -160,10 +160,10 @@ class Constant {
 		$prefix = strtoupper( $prefix );
 
 		return self::define_multiple( [
-			"{$prefix}_DEBUG"         => defined( 'WP_DEBUG' ) ? WP_DEBUG : false,
-			"{$prefix}_DEBUG_LOG"     => defined( 'WP_DEBUG_LOG' ) ? WP_DEBUG_LOG : false,
-			"{$prefix}_DEBUG_DISPLAY" => defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY : true,
-			"{$prefix}_SCRIPT_DEBUG"  => defined( 'SCRIPT_DEBUG' ) ? SCRIPT_DEBUG : false,
+			"{$prefix}_DEBUG"         => defined( 'WP_DEBUG' ) && WP_DEBUG,
+			"{$prefix}_DEBUG_LOG"     => defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG,
+			"{$prefix}_DEBUG_DISPLAY" => ! defined( 'WP_DEBUG_DISPLAY' ) || WP_DEBUG_DISPLAY,
+			"{$prefix}_SCRIPT_DEBUG"  => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 		] );
 	}
 
